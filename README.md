@@ -226,6 +226,32 @@ finally:
 * finally行則是無論如何都會執行的部分!
 * 可以記得的小技巧是，這裡可以將兩種狀況中寫入同一個except，當然也可以用else包含其他的異常狀況。
 
+##### 5/26 應用try & except 練習讀取檔案以及寫入文字進入檔案。
+```python=
+str = r"C:\Users\CKJ\Desktop\workspace\test.txt"
+
+try:
+    with open (str) as file:
+        print(file.read())
+#避免檔案輸入錯誤無法執行       
+except FileNotFoundError:
+    print("檔案並不存在")
+    
+text = "hi!\n祝你一切順利!"
+
+#寫入模式:w aka write 雖然說是寫入，但其實是整個覆蓋掉。
+with open(str,"w") as file:
+    file.write(text)
+    
+#插入模式:a 不會覆蓋掉前面的檔案。
+with open(str, "a")as file:
+    file.write("\n gogogo!!!")
+```
+
+* 這次的練習先學習了如何讀取python檔案，在讀取檔案的時候會複製文件的路徑，使用r"..."的寫法就可以不用更改路徑的斜線(\)。
+* 之後為了避免輸入的路徑錯誤而程式當掉，因此加上try &except 的異常處理使程式可以在錯誤的情況下輸出:「檔案並不存在」
+* 接著學習w (寫入)& a(插入)兩種模式，前者是直接以新內容覆蓋舊內容，後者則是在文件後面插入新的文字。
+* w & a的寫法很簡單，只是把file.read 改成 file.write，以及在str後面加入w 或 a就可以了!
 ####  實作篇
 ##### 4/22 剪刀石頭布
 程式碼:
