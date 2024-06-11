@@ -252,6 +252,26 @@ with open(str, "a")as file:
 * 之後為了避免輸入的路徑錯誤而程式當掉，因此加上try &except 的異常處理使程式可以在錯誤的情況下輸出:「檔案並不存在」
 * 接著學習w (寫入)& a(插入)兩種模式，前者是直接以新內容覆蓋舊內容，後者則是在文件後面插入新的文字。
 * w & a的寫法很簡單，只是把file.read 改成 file.write，以及在str後面加入w 或 a就可以了!
+
+##### 6/11 複製文件的三種方法以及細微差異
+程式碼: 
+```python=
+import shutil
+#三種方法
+
+w = r'C:\Users\CKJ\Desktop\workspace'
+source = f"{w}/source_file.txt"
+dst =  f"{w}/destination_file.txt"
+shutil.copyfile(source, dst)
+
+```
+* 這個程式先以一個w變數儲存前面的路徑文字，再用f"{ }" 的寫法讓他接續著要複製的文件名。
+* 需要引入shutil模組，這個模組的作用是操作資料與資料夾，在這裡只介紹複製的功用，三種方法分別是copyfile , copy ,copy2
+* 因為實做出來的結果幾乎一樣，因此只寫出一種，在shutil.copyfile(source, dst)括號中前者是檔案路徑來源，後者是檔案要複製到哪的路徑以及檔案名。
+* 三種方法有何差異? 
+    1. copyfile是複製整個檔案到新地方
+    2. copy除了複製檔案也複製權限資訊
+    3. copy2則會連修改時間與修改者一起複製，可以說是複製最多的函數。
 ####  實作篇
 ##### 4/22 剪刀石頭布
 程式碼:
